@@ -20,9 +20,27 @@ public enum ResponseMessages {
 		}
 	},
 	
+	RESOURCE_NOT_PRESENT {
+		public String toString() {
+			return "The resource can't be updated, it was not found on the system.";
+		}
+	},
+	
 	SUCCESSFULLY_ADDED {
 		public String toString() {
 			return "The resource was successfully added to the system.";
+		}
+	},
+	
+	SUCCESSFULLY_REMOVED {
+		public String toString() {
+			return "The resource was successfully removed from the system.";
+		}
+	},
+	
+	SUCCESSFULLY_UPDATED {
+		public String toString() {
+			return "The resource was successfully updated.";
 		}
 	}
 
