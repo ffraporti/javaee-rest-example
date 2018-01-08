@@ -1,8 +1,13 @@
 package com.ffraporti.desafio;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -12,13 +17,13 @@ import javax.ws.rs.core.Response;
 @Path("provider")
 public class ServiceProvider {
 	
+	private List<Provider> providers = new ArrayList<Provider>();
+	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getAll()
 	{
-		String output = "<h1>Hello World!<h1>" +
-				"<p>RESTful Service is running ... <br>Ping @ " + new Date().toString() + "</p<br>";
-		return Response.status(200).entity(output).build();
+		return Response.status(Response.Status.OK).entity(providers).build();
 	}
 	
 	@GET
@@ -26,35 +31,32 @@ public class ServiceProvider {
 	@Path("{id}")
 	public Response getById(@PathParam("id") int id)
 	{
-		Provider provider = new Provider(id, "teste frap", "teste@gmail.com", "dlsaknsd", "ldsakm;");
-		return Response.status(200).entity(provider).build();
+		for(Provider p : providers) {
+			
+			if(p.getId() == id) {
+				return Response.status(Response.Status.OK).entity(p).build();
+			}
+			
+		}
+		
+		return Response.status(Response.Status.OK).entity(ResponseMessages.NOT_FOUND).build();
 	}
 	
-	@GET
+	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("{email}")
-	public Response getByEmail(@PathParam("email") String email)
-	{
-		Provider provider = new Provider(2, "teste frap", email, "dlsaknsd", "ldsakm;");
-		return Response.status(200).entity(provider).build();
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response create() {
+		
+		return Response.status(Response.Status.CREATED).entity("Created").build();
 	}
 	
-	@GET
+	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("{name}")
-	public Response getByName(@PathParam("name") String name)
-	{
-		Provider provider = new Provider(3, name, "teste@gmail.com", "dlsaknsd", "ldsakm;");
-		return Response.status(200).entity(provider).build();
-	}
-	
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	@Path("{cnpj}")
-	public Response getByCnpj(@PathParam("cnpj") String cnpj)
-	{
-		Provider provider = new Provider(6, "teste frap", "teste@gmail.com", "dlsaknsd", cnpj);
-		return Response.status(200).entity(provider).build();
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("{id}")
+	public Response update(@PathParam("id") int id) {
+		
+		return Response.status(Response.Status.CREATED).entity("Created").build();
 	}
 
 }
