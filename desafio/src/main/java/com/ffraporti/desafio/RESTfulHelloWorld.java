@@ -1,19 +1,16 @@
-package desafio.neomind.restfulapi;
+package com.ffraporti.desafio;
 
 import java.util.Date;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
  
-@Path("provider")
-public class Provider{
-	
-	public Provider() {
-		System.out.println("Provider Started");
-	}
-	
+@Path("/")
+public class RESTfulHelloWorld 
+{
 	@GET
 	@Produces("text/html")
 	public Response getStartingPage()
