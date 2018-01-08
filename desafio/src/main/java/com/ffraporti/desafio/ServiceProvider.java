@@ -29,5 +29,32 @@ public class ServiceProvider {
 		Provider provider = new Provider(id, "teste frap", "teste@gmail.com", "dlsaknsd", "ldsakm;");
 		return Response.status(200).entity(provider).build();
 	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("{email}")
+	public Response getByEmail(@PathParam("email") String email)
+	{
+		Provider provider = new Provider(2, "teste frap", email, "dlsaknsd", "ldsakm;");
+		return Response.status(200).entity(provider).build();
+	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("{name}")
+	public Response getByName(@PathParam("name") String name)
+	{
+		Provider provider = new Provider(3, name, "teste@gmail.com", "dlsaknsd", "ldsakm;");
+		return Response.status(200).entity(provider).build();
+	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("{cnpj}")
+	public Response getByCnpj(@PathParam("cnpj") String cnpj)
+	{
+		Provider provider = new Provider(6, "teste frap", "teste@gmail.com", "dlsaknsd", cnpj);
+		return Response.status(200).entity(provider).build();
+	}
 
 }
