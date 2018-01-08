@@ -6,7 +6,7 @@
   <display-name>REST API - Providers</display-name>
   
   <servlet>
-		<servlet-name>helloworld</servlet-name>
+		<servlet-name>RESTful API - v1</servlet-name>
 		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
 		<init-param>
 			<param-name>com.sun.jersey.config.property.packages</param-name>
@@ -16,8 +16,8 @@
 	</servlet>
  
 	<servlet-mapping>
-		<servlet-name>helloworld</servlet-name>
-		<url-pattern>/rest/*</url-pattern>
+		<servlet-name>RESTful API - v1</servlet-name>
+		<url-pattern>/v1/*</url-pattern>
 	</servlet-mapping>
   
 </web-app>
