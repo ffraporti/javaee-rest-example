@@ -12,6 +12,9 @@ public class Provider {
 	
 	private String cnpj;
 		
+	public Provider() {
+		
+	}
 
 	public Provider(int id, String name, String email, String comment, String cnpj) {
 		super();
@@ -20,6 +23,13 @@ public class Provider {
 		setEmail(email);
 		setComment(comment);
 		setCnpj(cnpj);
+	}
+	
+	public Boolean isValid() {
+		if( getId() == 0 || getName() == null || !getEmail().contains("@") || getCnpj().length() != 11)		
+			return false;
+		
+		return true;
 	}
 
 	public int getId() {
