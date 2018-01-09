@@ -10,6 +10,7 @@ This API serves provider's information on the following format:
  * Tomcat v9.02
  * Jersey Server v1.9
  * Jersey JSON v1.9
+ * JUnit v4.2
  
  # Build
  * Maven 3
