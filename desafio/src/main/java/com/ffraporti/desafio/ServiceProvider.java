@@ -69,7 +69,7 @@ public class ServiceProvider {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response create(Provider data) {
 		
-		if(data == null || !data.isValid()) {
+		if(data == null || !isValid(data)) {
 			return Response.status(Response.Status.BAD_REQUEST).entity(ResponseMessages.NO_BODY_PROVIDED.toString()).build();
 		}
 	
@@ -97,14 +97,14 @@ public class ServiceProvider {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response update(Provider data) {
 		
-		if(data == null || !data.isValid()) {
+		if(data == null || !isValid(data)) {
 			return Response.status(Response.Status.BAD_REQUEST).entity(ResponseMessages.NO_BODY_PROVIDED.toString()).build();
 		}
 	
 		Provider internalProvider = findById(data.getId());
 		
 		if(internalProvider == null) {
-			return Response.status(Response.Status.BAD_REQUEST).entity(ResponseMessages.RESOURCE_NOT_PRESENT.toString()).build();
+			return Response.status(Response.Status.NOT_MODIFIED).entity(ResponseMessages.CANNOT_EXECUTE.toString()).build();
 		}
 		
 		providers.remove(internalProvider);
@@ -131,7 +131,7 @@ public class ServiceProvider {
 		Provider internalProvider = findById(id);
 		
 		if(internalProvider == null) {
-			return Response.status(Response.Status.NOT_MODIFIED).entity(ResponseMessages.RESOURCE_NOT_PRESENT.toString()).build();
+			return Response.status(Response.Status.NOT_MODIFIED).entity(ResponseMessages.CANNOT_EXECUTE.toString()).build();
 		}
 		
 		providers.remove(internalProvider);
@@ -158,6 +158,19 @@ public class ServiceProvider {
 		}
 		
 		return null;		
+	}
+	
+	/**
+	 * Validates the provider data
+	 * 
+	 * @param data - Provider object to be validated
+	 * @return true for valid, false for invalid
+	 */
+	private Boolean isValid(Provider data) {
+		if( data.getId() == 0 || data.getName() == null || !data.getEmail().contains("@") || data.getCnpj().length() != 11)		
+			return false;
+		
+		return true;
 	}
 
 }

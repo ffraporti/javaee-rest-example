@@ -26,6 +26,12 @@ public enum ResponseMessages {
 		}
 	},
 	
+	CANNOT_EXECUTE {
+		public String toString() {
+			return "Resource not found on the system.";
+		}
+	},
+	
 	SUCCESSFULLY_ADDED {
 		public String toString() {
 			return "The resource was successfully added to the system.";

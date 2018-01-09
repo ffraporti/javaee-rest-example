@@ -24,13 +24,6 @@ public class Provider {
 		setComment(comment);
 		setCnpj(cnpj);
 	}
-	
-	public Boolean isValid() {
-		if( getId() == 0 || getName() == null || !getEmail().contains("@") || getCnpj().length() != 11)		
-			return false;
-		
-		return true;
-	}
 
 	public int getId() {
 		return id;
