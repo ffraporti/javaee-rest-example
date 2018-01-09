@@ -12,4 +12,4 @@ This API serves provider's information on the following format:
  * Jersey JSON v1.9
  
  # Build
- * Maven
+ * Maven 3
